@@ -1,8 +1,8 @@
 import "./global.css";
 import React from "react";
-import HomestayPage from "./kitchensink-components/HomestayPage";
-import { SafeAreaView, GluestackUIProvider } from "./components/ui";
 import * as Linking from "expo-linking";
+import HomePage from "@/app/HomePage";
+import { SafeAreaView, GluestackUIProvider } from "@/components/ui";
 
 let defaultTheme: "dark" | "light" = "light";
 
@@ -21,9 +21,7 @@ export const ThemeContext = React.createContext<ThemeContextType>({
 });
 
 export default function App() {
-  const [colorMode, setColorMode] = React.useState<"dark" | "light">(
-    defaultTheme
-  );
+  const [colorMode, setColorMode] = React.useState<"dark" | "light">(defaultTheme);
 
   const toggleColorMode = async () => {
     setColorMode((prev) => (prev === "light" ? "dark" : "light"));
@@ -32,9 +30,7 @@ export default function App() {
   return (
     <>
       {/* top SafeAreaView */}
-      <SafeAreaView
-        className={`${colorMode === "light" ? "bg-[#E5E5E5]" : "bg-[#262626]"}`}
-      />
+      <SafeAreaView className={`${colorMode === "light" ? "bg-[#E5E5E5]" : "bg-[#262626]"}`} />
       <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
         <GluestackUIProvider mode={colorMode}>
           {/* bottom SafeAreaView */}
@@ -43,7 +39,7 @@ export default function App() {
               colorMode === "light" ? "bg-white" : "bg-[#171717]"
             } flex-1 overflow-hidden`}
           >
-            <HomestayPage />
+            <HomePage />
           </SafeAreaView>
         </GluestackUIProvider>
       </ThemeContext.Provider>
